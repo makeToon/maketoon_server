@@ -16,6 +16,7 @@ type EnvConfig struct {
 	DbLocation        string		`env:"DB_LOCATION"`
 	Region            string		`env:"REGION"`
 	Bucket            string		`env:"BUCKET"`
+	Port			  string 		`env:"PORT"`
 }
 
 var AwsUploader *s3manager.Uploader
