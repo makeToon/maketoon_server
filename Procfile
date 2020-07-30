@@ -1,1 +1,1 @@
-web: bin/maketoon
+web: maketoon
