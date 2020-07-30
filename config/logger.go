@@ -1,7 +1,7 @@
 package config
 
 // errorFormat : server logger format
-func errorFormat() string {
+func ErrorFormat() string {
 	return `{
 		time: ${time_rfc3339_nano}
 		id: ${id}
