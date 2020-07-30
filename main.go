@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// heroku build
 	handler.AwsConfig()
 	database.MongoConn()
 	router := route.Init()
