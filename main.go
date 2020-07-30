@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/caarlos0/env"
-	"makeToon/database"
-	"makeToon/handler"
-	"makeToon/route"
+	"github.com/makeToon/maketoon_server/database"
+	"github.com/makeToon/maketoon_server/handler"
+	"github.com/makeToon/maketoon_server/route"
 )
 
 func main() {

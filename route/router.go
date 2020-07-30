@@ -3,8 +3,8 @@ package route
 import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"makeToon/api"
-	"makeToon/config"
+	"github.com/makeToon/maketoon_server/api"
+	"github.com/makeToon/maketoon_server/config"
 )
 
 func Init() *echo.Echo {

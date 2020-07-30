@@ -8,8 +8,8 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang.org/x/net/context"
-	"makeToon/handler"
-	"makeToon/model"
+	"github.com/makeToon/maketoon_server/handler"
+	"github.com/makeToon/maketoon_server/model"
 	"time"
 )
 
