@@ -8,8 +8,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang.org/x/net/context"
-	"github.com/makeToon/maketoon_server/handler"
-	"github.com/makeToon/maketoon_server/model"
+	"maketoon/handler"
+	"maketoon/model"
+	"strconv"
 	"time"
 )
 
@@ -38,13 +39,15 @@ func MongoConn() (client *mongo.Client){
 	return client
 }
 
-func SetPhoto(userId, area, photo, width, height string) {
+func SetPhoto(userId, area, photo, width, height string, imgWidth, imgHeight int) {
 	findUser := model.User{}
 	areaDocument := make(map[string]string)
 	areaDocument["area"] = area
 	areaDocument["imgUrl"] = photo
 	areaDocument["width"] = width
 	areaDocument["height"] = height
+	areaDocument["imgWidth"] = strconv.Itoa(imgWidth)
+	areaDocument["imgHeight"] = strconv.Itoa(imgHeight)
 
 	user := model.User{UserID: userId, Area: []map[string]string{areaDocument}}
 

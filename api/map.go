@@ -6,15 +6,17 @@ import (
 	"github.com/gofrs/uuid"
 	fb "github.com/huandu/facebook"
 	"github.com/labstack/echo"
+	"image"
 	"io"
-	"github.com/makeToon/maketoon_server/database"
-	"github.com/makeToon/maketoon_server/handler"
+	"maketoon/database"
+	"maketoon/handler"
 	"net/http"
 	"os"
 	"strings"
 )
 
 var users = map[string]map[string]string {}
+const MB = 1048576
 
 type Error struct {
 	Message string
@@ -97,6 +99,14 @@ func PutCropPhoto(context echo.Context) error {
 
 	defer file.Close()
 
+	image, _, imageErr := image.DecodeConfig(file)
+	if imageErr != nil {
+		fmt.Println(imageErr)
+	}
+	if image.Height * image.Width > MB * 6 {
+		return context.NoContent(http.StatusForbidden)
+	}
+
 	// aws 업로드
 	awsResponse, awsErr := handler.FileUploadTos3(fileName, file)
 	if awsErr != nil {
@@ -105,7 +115,7 @@ func PutCropPhoto(context echo.Context) error {
 	}
 
 	// DB에 저장
-	database.SetPhoto(userId, area, awsResponse.Location, width, height)
+	database.SetPhoto(userId, area, awsResponse.Location, width, height, image.Width, image.Height)
 
 	// dummy 이미지 제거
 	_ = os.Remove(fileName)
