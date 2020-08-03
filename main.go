@@ -18,6 +18,6 @@ func main() {
 	handler.AwsConfig()
 	database.MongoConn()
 	router := route.Init()
-	router.Logger.Fatal(router.Start(port))
+	router.Logger.Fatal(router.Start(":" + port))
 	//router.Logger.Fatal(router.Start(handler.Envs.Port))
 }
