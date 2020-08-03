@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	// deploy
 	if err := env.Parse(&handler.Envs); err != nil {
 		fmt.Printf("%+v\n", err)
 	}
